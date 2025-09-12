@@ -2,44 +2,20 @@ name: Deploy Flutter Web to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v4
-      
-    - name: Setup Flutter
-      uses: subosito/flutter-action@v2
-      with:
-        flutter-version: '3.24.3'
-        channel: 'stable'
-        
-    - name: Install dependencies
-      run: |
-        cd curriculum_flutter
-        flutter pub get
-        
-    - name: Generate code
-      run: |
-        cd curriculum_flutter
-        dart run build_runner build --delete-conflicting-outputs
-        
-    - name: Build web
-      run: |
-        cd curriculum_flutter
-        flutter build web --release --web-renderer html --base-href "/curriculum/"
-        
-    - name: Deploy to GitHub Pages
-      if: github.ref == 'refs/heads/main'
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: curriculum_flutter/build/web
-        cname: # Opcional: adicione seu domínio customizado aqui
 
+    steps:
+      - uses: actions/checkout@v3
+      - uses: subosito/flutter-action@v2
+      - run: flutter build web --release
+      - run: git config user.name ${{secrets.name}}
+      - run: git config user.email ${{secrets.email}}
+      - run: git --work-tree build/web add --all
+      - run: git commit -m "Automatic deployment by github-actions"
+      - run: git push origin HEAD:gh-pages --force
