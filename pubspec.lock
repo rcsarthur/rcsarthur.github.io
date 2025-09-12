@@ -294,7 +294,7 @@ packages:
     description:
       path: "."
       ref: master
-      resolved-ref: "54b9982f3260dc1be6d867bf251207b760b37cae"
+      resolved-ref: "9e2f65f74f8c8cc469a86fb385df82920f07f8e4"
       url: "git@github.com:rcsarthur/curriculum_dart.git"
     source: git
     version: "1.0.0"
