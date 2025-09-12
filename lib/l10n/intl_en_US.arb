@@ -1,0 +1,84 @@
+{
+  "@@locale": "en_US",
+  "locale": "en_US",
+  "otherLanguage": "BR",
+  "appTitle": "Curriculum Vitae",
+  "home": "Home",
+  "experiences": "Experiences",
+  "projects": "Projects",
+  "skills": "Skills",
+  "contact": "Contact",
+  "downloadPdf": "Download PDF",
+  "toggleTheme": "Toggle Theme",
+  "changeLanguage": "Change Language",
+  
+  "heroTitle": "Flutter/Dart Developer",
+  "heroSubtitle": "Passionate about creating amazing mobile and web applications",
+  "heroDescription": "Flutter/Dart developer with experience in mobile and web development. Expert in MVVM architecture, native state management, and REST API integration.",
+  "heroLocale": "São Paulo, SP - Brazil",
+
+  "contactMe": "Contact Me",
+  "mainTechnologies": "Main Technologies",
+  "navigateToExperiences": "View Experiences",
+  "navigateToProjects": "View Projects",
+  "navigateToSkills": "View Skills",
+  
+  "professionalExperience": "Professional Experience",
+  "experienceDescription": "My professional journey and key achievements",
+  "currentJob": "Current",
+  "technologies": "Technologies",
+  "achievements": "Achievements",
+  
+  "projectsTitle": "Projects",
+  "projectsDescription": "Main projects developed and their features",
+  "projectDetails": "Project Details",
+  "description": "Description",
+  "features": "Features",
+  "moreFeatures": "more features",
+  "viewProject": "View Project",
+  "sourceCode": "Source Code",
+  "goBack": "Go Back",
+  
+  "skillsTitle": "Skills",
+  "skillsDescription": "My technical competencies and soft skills",
+  "technicalSkills": "Technical Skills",
+  "softSkills": "Soft Skills",
+  "skillLevel": "Level",
+  "examples": "Examples",
+  
+  "projectStatusInProgress": "In Progress",
+  "projectStatusCompleted": "Completed",
+  "projectStatusPaused": "Paused",
+  "projectStatusCancelled": "Cancelled",
+  
+  "skillLevelBeginner": "Beginner",
+  "skillLevelIntermediate": "Intermediate",
+  "skillLevelAdvanced": "Advanced",
+  "skillLevelExpert": "Expert",
+
+  "skillTypeTechnical": "Technical",
+  "skillTypeSoft": "Soft Skill",
+  "skillTypeLanguage": "Language",
+
+  "contactTooltipEmail": "Send Email",
+  "contactTooltipWhatsapp": "WhatsApp",
+  "contactTooltipLinkedin": "LinkedIn Profile",
+  "contactTooltipGithub": "GitHub Profile",
+  
+  "errorLoadingData": "Error loading curriculum data",
+  "errorGeneratingPdf": "Error generating PDF",
+  "errorOpeningContact": "Error opening contact",
+  "errorChangingTheme": "Error changing theme",
+  "errorChangingLanguage": "Error changing language",
+  "tryAgain": "Try Again",
+  "projectNotFound": "Project not found",
+  
+  "loading": "Loading...",
+  "noData": "No data available",
+  "more": "more",
+  "explore": "Explore",
+
+  "emailSubject": "Contact via GitHub Curriculum",
+  "preDefinedMessage": "Hello, I saw your curriculum and would like to talk."
+}
+

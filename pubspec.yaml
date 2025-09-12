@@ -1,0 +1,75 @@
+name: curriculum_flutter
+description: "A new Flutter project."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.6.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
+
+  audioplayers: ^6.5.1
+  auto_route: ^10.1.2
+  cupertino_icons: ^1.0.8
+  flutter_svg: ^2.2.1
+  # HTTP requests
+#  http: ^1.5.0
+  
+  # URL launcher for contact links
+  url_launcher: ^6.3.2
+  
+  # PDF generation
+  pdf: ^3.11.3
+  printing: ^5.14.2
+  
+  # Responsive design
+  responsive_framework: ^1.5.1
+  
+  # Icons
+  font_awesome_flutter: ^10.9.0
+  
+  # Internationalization
+  intl: ^0.20.2
+  
+  # Local dependency for business logic
+  curriculum_dart:
+    path: ../curriculum_dart
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  # Auto route code generation
+  auto_route_generator: ^10.2.4
+  build_runner: ^2.7.1
+
+flutter_intl:
+  enabled: true
+  main_locale: pt_BR
+
+flutter:
+  generate: true
+  uses-material-design: true
+  assets:
+    - assets/audio/
+    - assets/icons/
+    - assets/images/
+    - assets/images/languages/
+
+  fonts:
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/Montserrat-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Montserrat-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Montserrat-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Montserrat-Bold.ttf
+          weight: 700

@@ -1,0 +1,83 @@
+{
+  "@@locale": "pt_BR",
+  "locale": "pt_BR",
+  "appTitle": "Currículo Vitae",
+  "home": "Início",
+  "experiences": "Experiências",
+  "projects": "Projetos",
+  "skills": "Habilidades",
+  "contact": "Contato",
+  "downloadPdf": "Baixar PDF",
+  "toggleTheme": "Alternar Tema",
+  "changeLanguage": "Alterar Idioma",
+
+  "heroTitle": "Desenvolvedor Flutter/Dart",
+  "heroSubtitle": "Apaixonado por criar aplicações mobile e web incríveis",
+  "heroDescription": "Desenvolvedor Flutter/Dart com experiência em desenvolvimento mobile e web. Especialista em arquitetura MVVM, gerenciamento de estado nativo e integração com APIs REST.",
+  "heroLocale": "São Paulo, SP - Brasil",
+
+  "contactMe": "Entre em Contato",
+  "mainTechnologies": "Principais Tecnologias",
+  "navigateToExperiences": "Ver Experiências",
+  "navigateToProjects": "Ver Projetos",
+  "navigateToSkills": "Ver Habilidades",
+
+  "professionalExperience": "Experiência Profissional",
+  "experienceDescription": "Minha jornada profissional e principais conquistas",
+  "currentJob": "Atual",
+  "technologies": "Tecnologias",
+  "achievements": "Conquistas",
+
+  "projectsTitle": "Projetos",
+  "projectsDescription": "Principais projetos desenvolvidos e suas funcionalidades",
+  "projectDetails": "Detalhes do Projeto",
+  "description": "Descrição",
+  "features": "Funcionalidades",
+  "moreFeatures": "mais funcionalidades",
+  "viewProject": "Ver Projeto",
+  "sourceCode": "Código Fonte",
+  "goBack": "Voltar",
+
+  "skillsTitle": "Habilidades",
+  "skillsDescription": "Minhas competências técnicas e soft skills",
+  "technicalSkills": "Habilidades Técnicas",
+  "softSkills": "Soft Skills",
+  "skillLevel": "Nível",
+  "examples": "Exemplos",
+
+  "projectStatusInProgress": "Em Desenvolvimento",
+  "projectStatusCompleted": "Concluído",
+  "projectStatusPaused": "Pausado",
+  "projectStatusCancelled": "Cancelado",
+
+  "skillLevelBeginner": "Iniciante",
+  "skillLevelIntermediate": "Intermediário",
+  "skillLevelAdvanced": "Avançado",
+  "skillLevelExpert": "Especialista",
+
+  "skillTypeTechnical": "Técnica",
+  "skillTypeSoft": "Soft Skill",
+  "skillTypeLanguage": "Idioma",
+
+  "contactTooltipEmail": "Enviar Email",
+  "contactTooltipWhatsapp": "WhatsApp",
+  "contactTooltipLinkedin": "Perfil LinkedIn",
+  "contactTooltipGithub": "Perfil GitHub",
+
+  "errorLoadingData": "Erro ao carregar dados do currículo",
+  "errorGeneratingPdf": "Erro ao gerar PDF",
+  "errorOpeningContact": "Erro ao abrir contato",
+  "errorChangingTheme": "Erro ao alterar tema",
+  "errorChangingLanguage": "Erro ao alterar idioma",
+  "tryAgain": "Tentar Novamente",
+  "projectNotFound": "Projeto não encontrado",
+
+  "loading": "Carregando...",
+  "noData": "Nenhum dado disponível",
+  "more": "mais",
+  "explore": "Explorar",
+
+  "emailSubject": "Contato via currículo GitHub",
+  "preDefinedMessage": "Olá, vi seu currículo e gostaria de conversar."
+}
+
