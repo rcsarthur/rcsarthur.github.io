@@ -39,8 +39,10 @@ dependencies:
   
   # Local dependency for business logic
   curriculum_dart:
-    path: ../curriculum_dart
-
+#    path: ../curriculum_dart
+    git:
+      url: git@github.com:rcsarthur/curriculum_dart.git
+      ref: master
 dev_dependencies:
   flutter_test:
     sdk: flutter

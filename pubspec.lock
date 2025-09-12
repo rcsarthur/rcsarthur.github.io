@@ -292,9 +292,11 @@ packages:
   curriculum_dart:
     dependency: "direct main"
     description:
-      path: "../curriculum_dart"
-      relative: true
-    source: path
+      path: "."
+      ref: master
+      resolved-ref: "54b9982f3260dc1be6d867bf251207b760b37cae"
+      url: "git@github.com:rcsarthur/curriculum_dart.git"
+    source: git
     version: "1.0.0"
   dart_style:
     dependency: transitive

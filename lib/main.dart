@@ -12,7 +12,7 @@ import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 void main() {
-  if (kIsWeb) setUrlStrategy(PathUrlStrategy());
+  if (kIsWeb) setUrlStrategy(const HashUrlStrategy());
   runApp(CurriculumApp());
 }
 

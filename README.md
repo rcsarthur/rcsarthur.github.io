@@ -148,10 +148,9 @@ Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalh
 
 ## 📞 Contato
 
-- **Email**: [seu-email@exemplo.com](mailto:seu-email@exemplo.com)
-- **LinkedIn**: [Seu Perfil](https://linkedin.com/in/seu-perfil)
-- **GitHub**: [Seu GitHub](https://github.com/seu-usuario)
+- **LinkedIn**: [Arthur Santos](https://linkedin.com/in/tuzinho00)
+- **GitHub**: [rcsarthur](https://github.com/rcsarthur)
 
 ---
 
-Desenvolvido com ❤️ usando Flutter
+Desenvolvido com ❤️ usando Flutter (e pela Poppy 🔨)
