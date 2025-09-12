@@ -1,6 +1,5 @@
-import 'dart:io';
-
 import 'package:curriculum_dart/domain/entities/theme_settings.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 
 class AppTheme {
@@ -11,16 +10,23 @@ class AppTheme {
   static const Color warningColor = Color(0xFFF59E0B);
   static const Color successColor = Color(0xFF10B981);
 
-  static bool get _mobile => Platform.isAndroid || Platform.isIOS;
+  static bool _mobile(BuildContext context) {
+    if (kIsWeb) {
+      return false;
+    } else {
+      final TargetPlatform platform = Theme.of(context).platform;
+      return platform == TargetPlatform.android || platform == TargetPlatform.iOS;
+    }
+  }
 
   // Light Theme
-  static ThemeData get lightTheme {
+  static ThemeData lightTheme(BuildContext context) {
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.light,
-      hoverColor: _mobile ? Colors.transparent : null,
-      splashColor: _mobile ? Colors.transparent : null,
-      highlightColor: _mobile ? Colors.transparent : null,
+      hoverColor: _mobile(context) ? Colors.transparent : null,
+      splashColor: _mobile(context) ? Colors.transparent : null,
+      highlightColor: _mobile(context) ? Colors.transparent : null,
       colorScheme: ColorScheme.fromSeed(
         seedColor: primaryColor,
         brightness: Brightness.light,
@@ -110,13 +116,13 @@ class AppTheme {
   }
 
   // Dark Theme
-  static ThemeData get darkTheme {
+  static ThemeData darkTheme(BuildContext context) {
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.dark,
-      hoverColor: _mobile ? Colors.transparent : null,
-      splashColor: _mobile ? Colors.transparent : null,
-      highlightColor: _mobile ? Colors.transparent : null,
+      hoverColor: _mobile(context) ? Colors.transparent : null,
+      splashColor: _mobile(context) ? Colors.transparent : null,
+      highlightColor: _mobile(context) ? Colors.transparent : null,
       colorScheme: ColorScheme.fromSeed(
         seedColor: primaryColor,
         brightness: Brightness.dark,

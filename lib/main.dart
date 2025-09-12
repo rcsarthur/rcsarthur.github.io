@@ -40,8 +40,8 @@ class CurriculumApp extends StatelessWidget {
             title: 'Arthur R C Santos - Curriculum Vitae',
             debugShowCheckedModeBanner: false,
             // Theme configuration
-            theme: AppTheme.lightTheme,
-            darkTheme: AppTheme.darkTheme,
+            theme: AppTheme.lightTheme(context),
+            darkTheme: AppTheme.darkTheme(context),
             themeMode: _getThemeMode(themeViewModel.themeSettings.themeMode),
             scrollBehavior: ScrollConfiguration.of(context).copyWith(
               dragDevices: {
