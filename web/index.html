@@ -1,41 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
 <head>
+  <!-- Configurações Essenciais -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+
   <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
+    A tag 'base' é crucial para o roteamento do Flutter Web.
+    O valor $FLUTTER_BASE_HREF será substituído durante o build.
+    A segunda tag é um fallback para desenvolvimento ou se o build falhar.
   -->
   <base href="$FLUTTER_BASE_HREF">
   <base href="/rcsarthur.github.io/">
 
-  <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="Arthur R C Santos - Flutter/Dart Developer">
-  <meta name="keywords" content="Flutter, Dart, Developer, CV, Resume, Portfolio">
+  <!-- Meta Tags de SEO Primárias -->
+  <title>Arthur R C Santos - Desenvolvedor Flutter/Dart | Portfólio</title>
+  <meta name="description" content="Portfólio de Arthur R C Santos, Desenvolvedor Flutter/Dart especialista em criar aplicações mobile, web e desktop com Clean Architecture, MobX, e CI/CD.">
   <meta name="author" content="Arthur R C Santos">
+  <meta name="keywords" content="Flutter, Dart, Desenvolvedor, Portfólio, Currículo, Mobile, Web, Desktop, Clean Architecture, MobX, CI/CD, Java, Quarkus, São Paulo">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://rcsarthur.github.io/">
 
-  <!-- iOS meta tags & icons -->
+  <meta property="og:title" content="Arthur R C Santos - Desenvolvedor Flutter/Dart">
+  <meta property="og:description" content="Desenvolvedor especialista em Flutter, Dart, Clean Architecture e CI/CD. Conheça minhas experiências, projetos e habilidades.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rcsarthur.github.io/">
+  <meta property="og:image" content="https://rcsarthur.github.io/icons/Icon-512.png">
+  <meta property="og:image:alt" content="Logo do Portfólio de Arthur R C Santos">
+  <meta property="og:locale" content="pt_BR">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Arthur R C Santos - Desenvolvedor Flutter/Dart">
+  <meta name="twitter:description" content="Portfólio de um desenvolvedor Flutter/Dart apaixonado por criar aplicações incríveis.">
+  <meta name="twitter:image" content="https://rcsarthur.github.io/icons/Icon-512.png">
+
   <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="curriculum_flutter">
+  <meta name="apple-mobile-web-app-title" content="Arthur R C Santos - CV">
+  <meta name="theme-color" content="#0175C2">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  <link rel="manifest" href="manifest.json">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
 
-  <title>Arthur R C Santos - Curriculum Vitae</title>
-  <link rel="manifest" href="manifest.json">
 </head>
 <body>
-  <script src="flutter_bootstrap.js" async></script>
+<!-- Carrega o script de inicialização do Flutter -->
+<script src="flutter_bootstrap.js" async></script>
 </body>
 </html>

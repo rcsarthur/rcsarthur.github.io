@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:curriculum_dart/domain/entities/project.dart';
+import 'package:curriculum_dart/domain/enums/project.enum.dart';
 import 'package:curriculum_flutter/generated/l10n.dart' show S;
+import 'package:curriculum_flutter/interface/view_model/curriculum.view_model.dart';
 import 'package:curriculum_flutter/interface/view_model/provider/view_model_provider.dart';
 import 'package:curriculum_flutter/interface/view_model/theme.view_model.dart';
 import 'package:curriculum_flutter/interface/widget/tech_chip.dart';
@@ -63,20 +65,10 @@ class ProjectDetailView extends StatelessWidget {
             rowMainAxisAlignment: MainAxisAlignment.start,
             rowCrossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              if (isSmallScreen)
-                ResponsiveRowColumnItem(
-                  rowFlex: 1,
-                  child: _buildProjectImage(context, project),
-                ),
               ResponsiveRowColumnItem(
                 rowFlex: 1,
-                child: _buildProjectInfo(context, project, theme),
+                child: _buildProjectInfo(context, project, curriculum, theme),
               ),
-              if (!isSmallScreen)
-                ResponsiveRowColumnItem(
-                  rowFlex: 1,
-                  child: _buildProjectImage(context, project),
-                ),
             ],
           ),
         );
@@ -84,13 +76,26 @@ class ProjectDetailView extends StatelessWidget {
     );
   }
 
-  Widget _buildProjectInfo(BuildContext context, Project project, ThemeViewModel themeViewModel) {
+  Widget _buildProjectInfo(
+      BuildContext context, Project project, CurriculumViewModel curriculumViewModel, ThemeViewModel themeViewModel) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           children: [
             if (project.iconUrl != null) ...[
+              Container(
+                width: 48,
+                height: 48,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(8),
+                  color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                ),
+                clipBehavior: Clip.antiAlias,
+                child: Image.asset(project.iconUrl!),
+              ),
+              const SizedBox(width: 16),
+            ] else ...[
               Container(
                 width: 48,
                 height: 48,
@@ -180,7 +185,20 @@ class ProjectDetailView extends StatelessWidget {
                 ],
               ),
             )),
-        const SizedBox(height: 32),
+        const SizedBox(height: 24),
+        if (project.githubUrl != null || project.liveUrl != null) ...[
+          if (project.githubUrl != null)
+            ElevatedButton.icon(
+              onPressed: () {
+                // TODO: Implementar abertura do GitHub
+              },
+              icon: const Icon(Icons.code_rounded),
+              label: Text(
+                S.of(context).sourceCode,
+              ),
+            ),
+        ],
+        const SizedBox(height: 12),
         Row(
           children: [
             ElevatedButton.icon(
@@ -190,54 +208,19 @@ class ProjectDetailView extends StatelessWidget {
                 S.of(context).goBack,
               ),
             ),
-            if (project.githubUrl != null || project.liveUrl != null) ...[
-              const SizedBox(width: 16),
-              if (project.githubUrl != null)
-                OutlinedButton.icon(
-                  onPressed: () {
-                    // TODO: Implementar abertura do GitHub
-                  },
-                  icon: const Icon(Icons.code_rounded),
-                  label: Text(
-                    S.of(context).sourceCode,
-                  ),
+            if (project.liveUrl != null) ...[
+              const SizedBox(width: 8),
+              ElevatedButton.icon(
+                onPressed: () => curriculumViewModel.openUrl(project.liveUrl!),
+                icon: const Icon(Icons.launch_rounded),
+                label: Text(
+                  S.of(context).viewProject,
                 ),
-              if (project.liveUrl != null) ...[
-                const SizedBox(width: 8),
-                OutlinedButton.icon(
-                  onPressed: () {
-                    // TODO: Implementar abertura do link
-                  },
-                  icon: const Icon(Icons.launch_rounded),
-                  label: Text(
-                    S.of(context).viewProject,
-                  ),
-                ),
-              ],
+              ),
             ],
           ],
         ),
       ],
-    );
-  }
-
-  Widget _buildProjectImage(BuildContext context, Project project) {
-    return Container(
-      width: double.infinity,
-      height: 300,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        color: Theme.of(context).colorScheme.surfaceContainerHighest,
-      ),
-      child: project.imageUrl == null
-          ? const Icon(Icons.image_outlined, size: 64, color: Colors.grey)
-          : Image.network(
-              project.imageUrl!,
-              width: 64,
-              height: 64,
-              errorBuilder: (context, error, stackTrace) =>
-                  const Icon(Icons.image_outlined, size: 64, color: Colors.grey),
-            ),
     );
   }
 

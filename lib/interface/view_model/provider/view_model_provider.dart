@@ -1,6 +1,6 @@
 import 'package:curriculum_dart/use_case/audio.use_case.dart';
-import 'package:curriculum_dart/use_case/contact.use_case.dart';
 import 'package:curriculum_dart/use_case/curriculum.use_case.dart';
+import 'package:curriculum_dart/use_case/launch.use_case.dart';
 import 'package:curriculum_dart/use_case/pdf.use_case.dart';
 import 'package:curriculum_dart/use_case/theme.use_case.dart';
 import 'package:curriculum_flutter/interface/config/module/app.module.dart';
@@ -37,12 +37,13 @@ class ViewModelNotifier extends ChangeNotifier {
   CurriculumViewModel _createCurriculumViewModel() {
     final curriculumDataUseCase = CurriculumUseCase(AppModule.curriculumRepo);
     final pdfUseCase = PdfUseCase(AppModule.pdfService);
-    final contactUseCase = ContactUseCase(AppModule.contactService);
+    final launchUseCase = LaunchUseCase(AppModule.launchService);
 
     final viewModel = CurriculumViewModel(
       getCurriculumDataUseCase: curriculumDataUseCase,
       generatePdfUseCase: pdfUseCase,
-      contactUseCase: contactUseCase,
+      launchUseCase: launchUseCase,
+      notificationService: AppModule.notificationService,
     );
 
     viewModel.addListener(() => notifyListeners());
@@ -52,7 +53,12 @@ class ViewModelNotifier extends ChangeNotifier {
   ThemeViewModel _createThemeViewModel() {
     final themeUseCase = ThemeUseCase(AppModule.themeService);
     final audioUseCase = AudioUseCase(AppModule.audioService);
-    final viewModel = ThemeViewModel(themeUseCase: themeUseCase, audioUseCase: audioUseCase);
+    final viewModel = ThemeViewModel(
+      themeUseCase: themeUseCase,
+      audioUseCase: audioUseCase,
+      notificationService: AppModule.notificationService,
+      localeService: AppModule.localeService,
+    );
 
     viewModel.addListener(() => notifyListeners());
     return viewModel;

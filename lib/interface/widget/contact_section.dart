@@ -101,7 +101,7 @@ class ContactSection extends StatelessWidget {
       case 'github':
         return FontAwesomeIcons.githubAlt;
       default:
-        return Icons.link;
+        return Icons.link_rounded;
     }
   }
 

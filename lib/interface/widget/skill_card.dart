@@ -1,4 +1,5 @@
 import 'package:curriculum_dart/domain/entities/skill.dart';
+import 'package:curriculum_dart/domain/enums/skill.enum.dart';
 import 'package:curriculum_flutter/generated/l10n.dart' show S;
 import 'package:flutter/material.dart';
 
@@ -129,7 +130,7 @@ class SkillCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Icon(
-                          Icons.arrow_right,
+                          Icons.arrow_right_rounded,
                           size: 16,
                           color: Theme.of(context).colorScheme.primary,
                         ),
@@ -153,11 +154,11 @@ class SkillCard extends StatelessWidget {
   IconData _getSkillIcon(SkillType type) {
     switch (type) {
       case SkillType.technical:
-        return Icons.code;
+        return Icons.code_rounded;
       case SkillType.soft:
-        return Icons.psychology;
+        return Icons.psychology_outlined;
       case SkillType.language:
-        return Icons.language;
+        return Icons.language_rounded;
     }
   }
 

@@ -1,14 +1,11 @@
-import 'package:curriculum_dart/domain/entities/theme_settings.dart';
+import 'package:curriculum_dart/domain/enums/app_theme.enum.dart';
+import 'package:curriculum_flutter/theme/app_colors.dart';
+import 'package:curriculum_flutter/theme/app_palette.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 
 class AppTheme {
   static const Color primaryColor = Color(0xFF2563EB);
-  static const Color primaryVariantColor = Color(0xFF1D4ED8);
-  static const Color secondaryColor = Color(0xFF10B981);
-  static const Color errorColor = Color(0xFFEF4444);
-  static const Color warningColor = Color(0xFFF59E0B);
-  static const Color successColor = Color(0xFF10B981);
 
   static bool _mobile(BuildContext context) {
     if (kIsWeb) {
@@ -28,25 +25,42 @@ class AppTheme {
       splashColor: _mobile(context) ? Colors.transparent : null,
       highlightColor: _mobile(context) ? Colors.transparent : null,
       colorScheme: ColorScheme.fromSeed(
-        seedColor: primaryColor,
+        seedColor: AppPalette.lightScaffold,
         brightness: Brightness.light,
+        outline: const Color(0x10000000),
       ),
+      scaffoldBackgroundColor: AppPalette.lightScaffold,
+      cardColor: AppPalette.lightCard,
+      extensions: <ThemeExtension<AppColors>>[AppColors.light],
       appBarTheme: const AppBarTheme(
         elevation: 0,
         centerTitle: false,
         backgroundColor: Colors.transparent,
-        foregroundColor: Colors.black87,
+        foregroundColor: AppPalette.darkText,
       ),
-      cardTheme: CardThemeData(
+      snackBarTheme: SnackBarThemeData(
         elevation: 2,
+        behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),
-        shadowColor: Colors.black.withValues(alpha: 0.1),
+        backgroundColor: AppPalette.lightCard,
+        dismissDirection: DismissDirection.horizontal,
+        contentTextStyle: const TextStyle(
+          color: AppPalette.darkText,
+        ),
       ),
+      cardTheme: Theme.of(context).cardTheme.copyWith(
+            color: AppPalette.lightCard,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+            shadowColor: Colors.black.withValues(alpha: 0.1),
+          ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           elevation: 2,
+          backgroundColor: AppPalette.lightCard,
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
@@ -55,6 +69,7 @@ class AppTheme {
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
+          backgroundColor: AppPalette.lightCard,
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
@@ -63,6 +78,7 @@ class AppTheme {
       ),
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
+          backgroundColor: AppPalette.lightCard,
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
@@ -76,40 +92,51 @@ class AppTheme {
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       ),
       fontFamily: 'Montserrat',
-      textTheme: const TextTheme(
+      textTheme: TextTheme(
         headlineLarge: TextStyle(
           fontSize: 32,
           fontWeight: FontWeight.bold,
           letterSpacing: -0.5,
+          color: AppColors.light.defaultText,
         ),
         headlineMedium: TextStyle(
           fontSize: 28,
           fontWeight: FontWeight.bold,
           letterSpacing: -0.25,
+          color: AppColors.light.defaultText,
         ),
         headlineSmall: TextStyle(
           fontSize: 24,
           fontWeight: FontWeight.w600,
+          color: AppColors.light.defaultText,
         ),
         titleLarge: TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.w600,
+          color: AppColors.light.defaultText,
         ),
         titleMedium: TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w500,
+          color: AppColors.light.defaultText,
         ),
         bodyLarge: TextStyle(
           fontSize: 16,
           height: 1.5,
+          color: AppColors.light.calculateSolidColor(
+              AppColors.light.defaultText.withValues(alpha: .7), AppColors.light.scaffoldBackground),
         ),
         bodyMedium: TextStyle(
           fontSize: 14,
           height: 1.4,
+          color: AppColors.light.calculateSolidColor(
+              AppColors.light.defaultText.withValues(alpha: .7), AppColors.light.scaffoldBackground),
         ),
         bodySmall: TextStyle(
           fontSize: 12,
           height: 1.3,
+          color: AppColors.light.calculateSolidColor(
+              AppColors.light.defaultText.withValues(alpha: .6), AppColors.light.scaffoldBackground),
         ),
       ),
     );
@@ -124,25 +151,42 @@ class AppTheme {
       splashColor: _mobile(context) ? Colors.transparent : null,
       highlightColor: _mobile(context) ? Colors.transparent : null,
       colorScheme: ColorScheme.fromSeed(
-        seedColor: primaryColor,
+        seedColor: AppPalette.darkScaffold,
         brightness: Brightness.dark,
+        outline: const Color(0x10000000),
       ),
+      scaffoldBackgroundColor: AppPalette.darkScaffold,
+      cardColor: AppPalette.darkCard,
+      extensions: <ThemeExtension<AppColors>>[AppColors.dark],
       appBarTheme: const AppBarTheme(
         elevation: 0,
         centerTitle: false,
-        backgroundColor: Colors.transparent,
-        foregroundColor: Colors.white,
+        backgroundColor: AppPalette.darkScaffold,
+        foregroundColor: AppPalette.lightText,
       ),
-      cardTheme: CardThemeData(
-        elevation: 4,
+      snackBarTheme: SnackBarThemeData(
+        elevation: 2,
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: AppPalette.darkCard,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),
-        shadowColor: Colors.black.withValues(alpha: 0.3),
+        dismissDirection: DismissDirection.horizontal,
+        contentTextStyle: const TextStyle(
+          color: AppPalette.lightText,
+        ),
       ),
+      cardTheme: Theme.of(context).cardTheme.copyWith(
+            color: AppPalette.darkCard,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+            shadowColor: Colors.black.withValues(alpha: 0.1),
+          ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           elevation: 2,
+          backgroundColor: AppPalette.darkCard,
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
@@ -151,6 +195,7 @@ class AppTheme {
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
+          backgroundColor: AppPalette.darkCard,
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
@@ -159,6 +204,7 @@ class AppTheme {
       ),
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
+          backgroundColor: AppPalette.darkCard,
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
@@ -172,48 +218,51 @@ class AppTheme {
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       ),
       fontFamily: 'Montserrat',
-      textTheme: const TextTheme(
+      textTheme: TextTheme(
         headlineLarge: TextStyle(
           fontSize: 32,
           fontWeight: FontWeight.bold,
           letterSpacing: -0.5,
-          color: Colors.white,
+          color: AppColors.dark.defaultText,
         ),
         headlineMedium: TextStyle(
           fontSize: 28,
           fontWeight: FontWeight.bold,
           letterSpacing: -0.25,
-          color: Colors.white,
+          color: AppColors.dark.defaultText,
         ),
         headlineSmall: TextStyle(
           fontSize: 24,
           fontWeight: FontWeight.w600,
-          color: Colors.white,
+          color: AppColors.dark.defaultText,
         ),
         titleLarge: TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.w600,
-          color: Colors.white,
+          color: AppColors.dark.defaultText,
         ),
         titleMedium: TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w500,
-          color: Colors.white,
+          color: AppColors.dark.defaultText,
         ),
         bodyLarge: TextStyle(
           fontSize: 16,
           height: 1.5,
-          color: Colors.white70,
+          color: AppColors.dark
+              .calculateSolidColor(AppColors.dark.defaultText.withValues(alpha: .7), AppColors.dark.scaffoldBackground),
         ),
         bodyMedium: TextStyle(
           fontSize: 14,
           height: 1.4,
-          color: Colors.white70,
+          color: AppColors.dark
+              .calculateSolidColor(AppColors.dark.defaultText.withValues(alpha: .7), AppColors.dark.scaffoldBackground),
         ),
         bodySmall: TextStyle(
           fontSize: 12,
           height: 1.3,
-          color: Colors.white60,
+          color: AppColors.dark
+              .calculateSolidColor(AppColors.dark.defaultText.withValues(alpha: .6), AppColors.dark.scaffoldBackground),
         ),
       ),
     );

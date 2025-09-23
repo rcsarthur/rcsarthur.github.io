@@ -73,21 +73,6 @@ class ExperienceCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                if (experience.isCurrentJob)
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: Colors.green.withValues(alpha: 0.2),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Text(
-                      S.of(context).currentJob,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            color: Colors.green,
-                            fontWeight: FontWeight.w600,
-                          ),
-                    ),
-                  ),
               ],
             ),
 
@@ -107,6 +92,28 @@ class ExperienceCard extends StatelessWidget {
                         color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
                       ),
                 ),
+                if (experience.isCurrentJob)
+                  Expanded(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                          decoration: BoxDecoration(
+                            color: Colors.green.withValues(alpha: 0.2),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Text(
+                            S.of(context).currentJob,
+                            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                  color: Colors.green,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
               ],
             ),
 
@@ -182,7 +189,7 @@ class ExperienceCard extends StatelessWidget {
   }
 
   String _formatPeriod(BuildContext context, Experience experience, String locale) {
-    final endDate = experience.isCurrentJob ? (S.of(context).currentJob) : experience.formattedEndDate(locale) ?? '';
+    final endDate = experience.isCurrentJob ? (S.of(context).present) : experience.formattedEndDate(locale) ?? '';
     return '${experience.formattedStartDate(locale)} - $endDate';
   }
 }

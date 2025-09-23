@@ -1,4 +1,5 @@
 import 'package:curriculum_dart/domain/entities/project.dart';
+import 'package:curriculum_dart/domain/enums/project.enum.dart';
 import 'package:curriculum_flutter/generated/l10n.dart' show S;
 import 'package:curriculum_flutter/interface/config/route/routes.dart';
 import 'package:curriculum_flutter/interface/widget/tech_chip.dart';
@@ -28,18 +29,32 @@ class ProjectCard extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Container(
-                      width: 48,
-                      height: 48,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                    if (project.iconUrl != null) ...[
+                      Container(
+                        width: 48,
+                        height: 48,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                        ),
+                        clipBehavior: Clip.antiAlias,
+                        child: Image.asset(project.iconUrl!),
                       ),
-                      child: Icon(
-                        Icons.apps,
-                        color: Theme.of(context).colorScheme.primary,
+                    ] else ...[
+                      Container(
+                        width: 48,
+                        height: 48,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          color: Theme.of(context).colorScheme.surfaceContainerHighest,
+                        ),
+                        child: Icon(
+                          Icons.app_shortcut_outlined,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
                       ),
-                    ),
+                      const SizedBox(width: 16),
+                    ],
                     const SizedBox(width: 12),
                     Expanded(
                       child: Column(
@@ -120,7 +135,7 @@ class ProjectCard extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Icon(
-                              Icons.check_circle,
+                              Icons.check_circle_outline_rounded,
                               size: 14,
                               color: Theme.of(context).colorScheme.primary,
                             ),
@@ -149,7 +164,6 @@ class ProjectCard extends StatelessWidget {
                   const SizedBox(height: 16),
                 ],
 
-                // View details button
                 Row(
                   children: [
                     Text(
@@ -161,7 +175,7 @@ class ProjectCard extends StatelessWidget {
                     ),
                     const SizedBox(width: 4),
                     Icon(
-                      Icons.arrow_forward,
+                      Icons.arrow_forward_rounded,
                       color: Theme.of(context).colorScheme.primary,
                       size: 16,
                     ),

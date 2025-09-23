@@ -1,7 +1,8 @@
 import 'dart:ui' as ui;
 
-import 'package:curriculum_dart/domain/entities/languages.dart';
 import 'package:curriculum_dart/domain/entities/theme_settings.dart';
+import 'package:curriculum_dart/domain/enums/app_theme.enum.dart';
+import 'package:curriculum_dart/domain/enums/languages.enum.dart';
 import 'package:curriculum_dart/service/theme.service.dart';
 
 class FlutterThemeService implements ThemeService {

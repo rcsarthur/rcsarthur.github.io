@@ -7,7 +7,15 @@ class Assets {
   static const String fontsMontserratLight = 'assets/fonts/Montserrat-Light.ttf';
   static const String fontsMontserratMedium = 'assets/fonts/Montserrat-Medium.ttf';
   static const String fontsMontserratRegular = 'assets/fonts/Montserrat-Regular.ttf';
-  static const String imagesHipcomLogo = 'assets/images/hipcom_logo.svg';
-  static const String languagesBrazil = 'assets/images/languages/brazil.svg';
-  static const String languagesUsa = 'assets/images/languages/usa.svg';
+  static const String fontsNotoColorEmoji = 'assets/fonts/NotoColorEmoji.ttf';
+  static const String fontsOpenSansBold = 'assets/fonts/OpenSans-Bold.ttf';
+  static const String fontsOpenSansBoldItalic = 'assets/fonts/OpenSans-BoldItalic.ttf';
+  static const String fontsOpenSansItalic = 'assets/fonts/OpenSans-Italic.ttf';
+  static const String fontsOpenSansRegular = 'assets/fonts/OpenSans-Regular.ttf';
+  static const String iconsHipcomLogo = 'assets/icons/hipcom_logo.svg';
+  static const String imagesLogoBase = 'assets/images/logo_base.png';
+  static const String imagesLogoCompras = 'assets/images/logo_compras.png';
+  static const String imagesProfile = 'assets/images/profile.jpg';
+  static const String languagesBrazil = 'assets/icons/languages/brazil.svg';
+  static const String languagesUsa = 'assets/icons/languages/usa.svg';
 }

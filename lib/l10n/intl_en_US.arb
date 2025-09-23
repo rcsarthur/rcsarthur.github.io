@@ -11,24 +11,22 @@
   "downloadPdf": "Download PDF",
   "toggleTheme": "Toggle Theme",
   "changeLanguage": "Change Language",
-  
   "heroTitle": "Flutter/Dart Developer",
   "heroSubtitle": "Passionate about creating amazing mobile and web applications",
-  "heroDescription": "Flutter/Dart developer with experience in mobile and web development. Expert in MVVM architecture, native state management, and REST API integration.",
+  "heroDescription": "Flutter/Dart developer with experience in mobile, desktop and web development. Expert in Clean Architecture, native state management, REST API integration, internationalization (i18n), theme management and CI/CD.",
   "heroLocale": "São Paulo, SP - Brazil",
-
   "contactMe": "Contact Me",
   "mainTechnologies": "Main Technologies",
   "navigateToExperiences": "View Experiences",
   "navigateToProjects": "View Projects",
   "navigateToSkills": "View Skills",
-  
   "professionalExperience": "Professional Experience",
+  "professionalSummary": "Professional Summary",
   "experienceDescription": "My professional journey and key achievements",
   "currentJob": "Current",
+  "present": "Present",
   "technologies": "Technologies",
   "achievements": "Achievements",
-  
   "projectsTitle": "Projects",
   "projectsDescription": "Main projects developed and their features",
   "projectDetails": "Project Details",
@@ -38,33 +36,27 @@
   "viewProject": "View Project",
   "sourceCode": "Source Code",
   "goBack": "Go Back",
-  
   "skillsTitle": "Skills",
   "skillsDescription": "My technical competencies and soft skills",
   "technicalSkills": "Technical Skills",
   "softSkills": "Soft Skills",
   "skillLevel": "Level",
   "examples": "Examples",
-  
   "projectStatusInProgress": "In Progress",
   "projectStatusCompleted": "Completed",
   "projectStatusPaused": "Paused",
   "projectStatusCancelled": "Cancelled",
-  
   "skillLevelBeginner": "Beginner",
   "skillLevelIntermediate": "Intermediate",
   "skillLevelAdvanced": "Advanced",
   "skillLevelExpert": "Expert",
-
   "skillTypeTechnical": "Technical",
   "skillTypeSoft": "Soft Skill",
   "skillTypeLanguage": "Language",
-
   "contactTooltipEmail": "Send Email",
   "contactTooltipWhatsapp": "WhatsApp",
   "contactTooltipLinkedin": "LinkedIn Profile",
   "contactTooltipGithub": "GitHub Profile",
-  
   "errorLoadingData": "Error loading curriculum data",
   "errorGeneratingPdf": "Error generating PDF",
   "errorOpeningContact": "Error opening contact",
@@ -72,13 +64,158 @@
   "errorChangingLanguage": "Error changing language",
   "tryAgain": "Try Again",
   "projectNotFound": "Project not found",
-  
   "loading": "Loading...",
   "noData": "No data available",
   "more": "more",
   "explore": "Explore",
-
   "emailSubject": "Contact via GitHub Curriculum",
-  "preDefinedMessage": "Hello, I saw your curriculum and would like to talk."
-}
+  "preDefinedMessage": "Hello, I saw your curriculum and would like to talk.",
 
+  "experienceHipcomPosition": "Junior Full-Stack Developer",
+  "experienceHipcomDescription": "Development of mobile, desktop and web applications using Flutter/Dart, integration with REST APIs, backend development with Java/Quarkus and management of SQLite and MySQL databases.",
+  "experienceHipcomAchievement1": "Integration with backend systems using *dio* and *http*",
+  "experienceHipcomAchievement2": "Implementation of Clean Architecture",
+  "experienceHipcomAchievement3": "Application performance optimization by analyzing *Flutter DevTools* in Android Studio (it's horrible to test an app and have the phone heat up in your hand )",
+  "experienceHipcomAchievement4": "Cache management using *shared_preferences*",
+  "experienceHipcomAchievement5": "State management using MobX and Flutter's native method",
+  "experienceHipcomAchievement6": "Development of multiple Mobile, Desktop and Web applications using Flutter",
+  "experienceHipcomAchievement7": "Microservices development using Quarkus",
+  "experienceHipcomAchievement8": "REST API development using Dart with the *shelf* lib",
+  "experienceHipcomAchievement9": "REST API development to connect apps to MySQL using Quarkus and *jdbc*",
+  "experienceHipcomAchievement10": "Responsive interface development",
+  "experienceHipcomAchievement11": "Unit test development",
+  "experienceHipcomAchievement12": "Implementation of charts and reports using *fl_chart*",
+  "experienceHipcomAchievement13": "Implementation of internationalization (i18n) using *flutter_intl* and *flutter_localizations* - Portuguese, English, Spanish and Chinese",
+  "experienceHipcomAchievement14": "Implementation of complex calculations with taxes, both in the Front-End and in the Back-End and in MySQL Queries",
+  "experienceHipcomAchievement15": "Implementation of mobile CI/CD using *codemagic*",
+  "experienceHipcomAchievement16": "Implementation of builds for Desktop using msix and Inno Setup Compiler (the project has not yet been published to the Microsoft Store)",
+  "experienceHipcomAchievement17": "Implementation of Multithreading in Java",
+  "experienceHipcomAchievement18": "Implementation of Offline mode using *sqflite*",
+  "experienceHipcomAchievement19": "Implementation of *Isolate* to perform costly tasks in parallel",
+  "experienceHipcomAchievement20": "Implementation of custom animations",
+  "experienceHipcomAchievement21": "Implementation of exporting zipped logs to Amazon S3 using *logger* lib",
+  "experienceHipcomAchievement22": "Implementation of filters to perform searches in lists",
+  "experienceHipcomAchievement23": "Implementation of paginated searches: Offset and Cursor",
+  "experienceHipcomAchievement24": "Implementation of chat with AI (Hippi) using WebSocket",
+  "experienceHipcomAchievement25": "Creation of .ps1 script to generate a shortcut on the Windows Desktop for Desktop applications (msix does not do this natively)",
+  "experienceHipcomAchievement26": "MySQL Query Optimization: optimization of complex queries, reducing execution time, a specific product select was taking more than 1 minute, I reduced the time to less than 20 seconds with the use of batches in Java",
+  "experienceHipcomAchievement27": "Help in creating the new company website using *Framer*",
+  "experienceHipcomAchievement28": "Help with SEO of the new company website",
+  "projectBaseDescription": "Mobile and desktop application for retail management with product control, sales and other reports.",
+  "projectBaseFeature1": "State management using MobX",
+  "projectBaseFeature2": "Singleton management using GetIt",
+  "projectBaseFeature3": "Real-time control of crucial data",
+  "projectBaseFeature4": "Detailed reports",
+  "projectBaseFeature5": "Responsive interface",
+  "projectBaseFeature6": "Offline synchronization",
+  "projectBaseFeature7": "Desktop Mode",
+  "projectBaseFeature8": "Dark Theme",
+  "projectBaseFeature9": "Charts and tables",
+  "projectBaseFeature10": "Management of different networks for users with several stores",
+  "projectBaseFeature11": "Isolated functions for background tasks",
+  "projectBaseFeature12": "Translation to Portuguese, English, Spanish and Chinese",
+  "projectBaseFeature13": "Biometric verification for authentication",
+  "projectBaseFeature14": "Automatic login of already authenticated users",
+  "projectBaseFeature15": "Registration of sales and purchase goals",
+  "projectBaseFeature16": "Integration via WebSocket for HippiAI (Hipcom's artificial intelligence) for questions about graphs available in the app",
+  "projectComprasDescription": "Mobile application for managing purchases directly from suppliers with product registration, purchases and reports features.",
+  "projectComprasFeature1": "Clean Architecture",
+  "projectComprasFeature2": "State management using MobX",
+  "projectComprasFeature3": "Singleton management using GetIt",
+  "projectComprasFeature4": "Purchase history",
+  "projectComprasFeature5": "Product search from filters and in batch",
+  "projectComprasFeature6": "Product search history",
+  "projectComprasFeature7": "Search and association of suppliers to products",
+  "projectComprasFeature8": "Synchronization and permanence of offline data",
+  "projectComprasFeature9": "Isolated functions for background tasks",
+  "projectComprasFeature10": "Search by barcode using camera with validation to avoid reading errors",
+  "projectComprasFeature11": "Calculation of packaging and final price automatic",
+  "projectStoreDescription": "Mobile application for managing other Hipcom apps, allowing you to install, update, remove and open without having to search the device store.",
+  "projectStoreFeature1": "Install, update, remove and open other Hipcom apps",
+  "projectStoreFeature2": "Clean Architecture",
+  "projectStoreFeature3": "Flutter native state management",
+  "projectStoreApiDescription": "CLI interface for REST calls from Hipcom Store, communicating with database and Play Store.",
+  "projectStoreApiFeature1": "MVC Architecture",
+  "projectStoreApiFeature2": "Route authentication using tokens",
+  "skillFlutterDescription": "Development of mobile, desktop and web applications with Flutter",
+  "skillFlutterExample1": "Creation of complex apps with MVVM/Clean Architecture and Clean Code",
+  "skillFlutterExample2": "Implementation of custom animations",
+  "skillFlutterExample3": "Integration with REST APIs",
+  "skillFlutterExample4": "Internationalization (i18n)",
+  "skillFlutterExample5": "State management using MobX and Flutter's native method",
+  "skillFlutterExample6": "Cache management using *shared_preferences*",
+  "skillFlutterExample7": "Application performance optimization by analyzing *Flutter DevTools* in Android Studio",
+  "skillFlutterExample8": "Implementation of biometric verification for authentication",
+  "skillFlutterExample9": "Implementation of mobile CI/CD using *codemagic*",
+  "skillJavaDescription": "Backend development with Java and Quarkus framework",
+  "skillJavaExample1": "Creation of REST APIs",
+  "skillJavaExample2": "Integration with database",
+  "skillJavaExample3": "Implementation of microservices",
+  "skillJavaExample4": "Implementation of multithreading",
+  "skillJavaExample5": "Implementation of unit tests",
+  "skillJavaExample6": "Implementation of filters in the endpoint call",
+  "skillDatabaseDescription": "Database management and optimization",
+  "skillDatabaseExample1": "Database schema design",
+  "skillDatabaseExample2": "Optimization and creation of complex queries",
+  "skillDatabaseExample3": "Database schema migration using *migration* (in MySQL and SQLite)",
+  "skillCicdDescription": "Automatic application deployment",
+  "skillCicdExample1": "Deployment of mobile, desktop and web applications using *codemagic* and *Github Actions*",
+  "skillTeamworkName": "Teamwork",
+  "skillTeamworkDescription": "Effective collaboration in team projects",
+  "skillTeamworkExample1": "Active participation in planning meetings",
+  "skillTeamworkExample2": "Mentoring junior developers",
+  "skillTeamworkExample3": "Collaborative problem solving",
+  "skillTeamworkExample4": "Effective communication with stakeholders",
+  "skillTeamworkExample5": "Participation in feedback meetings",
+  "skillProblemSolvingName": "Problem Solving",
+  "skillProblemSolvingDescription": "Analysis and solution of complex problems",
+  "skillProblemSolvingExample1": "Debugging applications in production",
+  "skillProblemSolvingExample2": "Performance optimization",
+  "skillProblemSolvingExample3": "Implementation of creative solutions",
+  "skillProblemSolvingExample4": "Answering support calls",
+  "skillAnalyticalAbilityName": "Analytical Ability",
+  "skillAnalyticalAbilityDescription": "Problem prevention and focus on efficient solutions",
+  "skillAnalyticalAbilityExample1": "Analysis of possible problems in the code",
+  "skillAnalyticalAbilityExample2": "Refactoring unnecessarily complex code",
+  "skillAnalyticalAbilityExample3": "Detailed requirements analysis to avoid rework or discrepancies in business rules",
+
+  "notificationErrorLoadData": "Error loading curriculum data.",
+  "notificationErrorSelectFilter": "Error selecting filter.",
+  "notificationSuccessGeneratePdf": "PDF generated successfully.",
+  "notificationErrorGeneratePdf": "Error generating PDF.",
+  "notificationErrorOpenContact": "Error opening contact: URL not found. ({url})",
+  "@notificationErrorOpenContact": {
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationErrorOpenUrl": "Error navigating: URL not found. ({url})",
+  "@notificationErrorOpenUrl": {
+    "placeholders": {
+      "url": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationErrorLoadTheme": "Error loading theme.",
+  "notificationSuccessToggleTheme": "Theme changed to {themeName}.",
+  "@notificationSuccessToggleTheme": {
+    "placeholders": {
+      "themeName": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationErrorToggleTheme": "Error changing theme.",
+  "notificationSuccessToggleLanguage": "Idioma alterado para {languageCode}.",
+  "@notificationSuccessToggleLanguage": {
+    "placeholders": {
+      "languageCode": {
+        "type": "String"
+      }
+    }
+  },
+  "notificationErrorToggleLanguage": "Error changing language."
+}

@@ -1,31 +1,41 @@
 import 'package:curriculum_dart/domain/entities/contact_info.dart';
 import 'package:curriculum_dart/domain/entities/experience.dart';
-import 'package:curriculum_dart/domain/entities/languages.dart';
 import 'package:curriculum_dart/domain/entities/personal_info.dart';
 import 'package:curriculum_dart/domain/entities/project.dart';
 import 'package:curriculum_dart/domain/entities/skill.dart';
+import 'package:curriculum_dart/domain/enums/languages.enum.dart';
+import 'package:curriculum_dart/domain/enums/skill.enum.dart';
+import 'package:curriculum_dart/service/notification.service.dart';
 import 'package:curriculum_dart/state/curriculum_state.dart';
-import 'package:curriculum_dart/use_case/contact.use_case.dart';
 import 'package:curriculum_dart/use_case/curriculum.use_case.dart';
+import 'package:curriculum_dart/use_case/launch.use_case.dart';
 import 'package:curriculum_dart/use_case/pdf.use_case.dart';
+import 'package:curriculum_flutter/generated/l10n.dart';
+import 'package:curriculum_flutter/interface/view_model/execution/execution.view_model.dart';
 import 'package:flutter/foundation.dart';
 
-class CurriculumViewModel extends ChangeNotifier {
+class CurriculumViewModel extends ChangeNotifier with ExecutionViewModel {
   final CurriculumUseCase _curriculumDataUseCase;
   final PdfUseCase _generatePdfUseCase;
-  final ContactUseCase _contactUseCase;
+  final LaunchUseCase _launchUseCase;
+  final NotificationService _notificationService;
 
   CurriculumState _state = const CurriculumState();
+
+  @override
+  NotificationService get notificationService => _notificationService;
 
   CurriculumState get state => _state;
 
   CurriculumViewModel({
     required CurriculumUseCase getCurriculumDataUseCase,
     required PdfUseCase generatePdfUseCase,
-    required ContactUseCase contactUseCase,
+    required LaunchUseCase launchUseCase,
+    required NotificationService notificationService,
   })  : _curriculumDataUseCase = getCurriculumDataUseCase,
         _generatePdfUseCase = generatePdfUseCase,
-        _contactUseCase = contactUseCase;
+        _launchUseCase = launchUseCase,
+        _notificationService = notificationService;
 
   void _updateState(CurriculumState newState) {
     _state = newState;
@@ -33,44 +43,53 @@ class CurriculumViewModel extends ChangeNotifier {
   }
 
   Future<void> loadCurriculumData() async {
-    _updateState(_state.setLoading(true));
-    try {
-      final newState = await _curriculumDataUseCase.getAllData();
-      _updateState(newState);
-    } catch (e) {
-      _updateState(_state.setError('Erro ao carregar dados do currículo: $e'));
-    }
+    CurriculumState? newState;
+    newState = await executeWithNotification(
+      () async => await _curriculumDataUseCase.getAllData(),
+      errorMessage: S.current.notificationErrorLoadData,
+    );
+    if (newState == null) return;
+    _updateState(newState);
   }
 
   Future<void> selectTech(String tech) async {
     final newSelectedTechs = _state.selectedTechs ?? [];
-    try {
-      if (newSelectedTechs.contains(tech)) {
-        newSelectedTechs.remove(tech);
-      } else {
-        newSelectedTechs.add(tech);
-      }
-      final newState = _state.copyWith(selectedTechs: newSelectedTechs);
-      _updateState(newState);
-    } catch (e) {
-      _updateState(_state.setError('Erro ao carregar dados do currículo: $e'));
-    }
+    CurriculumState? newState;
+    newState = await executeWithNotification(
+      () async {
+        if (newSelectedTechs.contains(tech)) {
+          newSelectedTechs.remove(tech);
+        } else {
+          newSelectedTechs.add(tech);
+        }
+        return _state.copyWith(selectedTechs: newSelectedTechs);
+      },
+      errorMessage: S.current.notificationErrorSelectFilter,
+    );
+    if (newState == null) return;
+    _updateState(newState);
   }
 
   Future<void> generatePdf(Languages language) async {
-    try {
-      await _generatePdfUseCase.execute(_state, language);
-    } catch (e) {
-      _updateState(_state.setError('Erro ao gerar PDF: $e'));
-    }
+    await executeWithNotification(
+      () async => await _generatePdfUseCase.execute(_state, language),
+      successMessage: S.current.notificationSuccessGeneratePdf,
+      errorMessage: S.current.notificationErrorGeneratePdf,
+    );
   }
 
   Future<void> openContact(ContactInfo contactInfo) async {
-    try {
-      await _contactUseCase.execute(contactInfo);
-    } catch (e) {
-      _updateState(_state.setError('Erro ao abrir contato: $e'));
-    }
+    await executeWithNotification(
+      () async => await _launchUseCase.openContact(contactInfo),
+      errorMessage: S.current.notificationErrorOpenContact(contactInfo.url),
+    );
+  }
+
+  Future<void> openUrl(String url) async {
+    await executeWithNotification(
+      () async => await _launchUseCase.openUrl(url),
+      errorMessage: S.current.notificationErrorOpenUrl(url),
+    );
   }
 
   void clearError() {

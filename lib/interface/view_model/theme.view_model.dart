@@ -1,33 +1,46 @@
-import 'dart:ui';
-
-import 'package:curriculum_dart/domain/entities/languages.dart';
 import 'package:curriculum_dart/domain/entities/theme_settings.dart';
+import 'package:curriculum_dart/domain/enums/app_theme.enum.dart';
+import 'package:curriculum_dart/domain/enums/languages.enum.dart';
+import 'package:curriculum_dart/service/locale.service.dart';
+import 'package:curriculum_dart/service/notification.service.dart';
 import 'package:curriculum_dart/state/theme_state.dart';
 import 'package:curriculum_dart/use_case/audio.use_case.dart';
 import 'package:curriculum_dart/use_case/theme.use_case.dart';
 import 'package:curriculum_flutter/generated/l10n.dart';
 import 'package:curriculum_flutter/interface/config/extensions/languages.extension.dart';
-import 'package:flutter/foundation.dart';
+import 'package:curriculum_flutter/interface/view_model/execution/execution.view_model.dart';
+import 'package:flutter/material.dart';
 
-class ThemeViewModel extends ChangeNotifier {
+class ThemeViewModel extends ChangeNotifier with ExecutionViewModel {
   final ThemeUseCase _themeUseCase;
   final AudioUseCase _audioUseCase;
+  final NotificationService _notificationService;
+  final LocaleService _localeService;
 
-  ThemeState _state = ThemeState(
-    themeSettings: ThemeSettings(
-      themeMode: AppThemeMode.dark,
-      language: Languages.fromDeviceLocale,
-    ),
-    isLoading: false,
-  );
+  late ThemeState _state;
+
+  @override
+  NotificationService get notificationService => _notificationService;
 
   ThemeState get state => _state;
 
   ThemeViewModel({
     required ThemeUseCase themeUseCase,
     required AudioUseCase audioUseCase,
+    required NotificationService notificationService,
+    required LocaleService localeService,
   })  : _themeUseCase = themeUseCase,
-        _audioUseCase = audioUseCase;
+        _audioUseCase = audioUseCase,
+        _notificationService = notificationService,
+        _localeService = localeService {
+    _state = ThemeState(
+      themeSettings: ThemeSettings(
+        themeMode: AppThemeMode.dark,
+        language: Languages.fromDeviceLocale(_localeService),
+      ),
+      isLoading: false,
+    );
+  }
 
   Future<void> playAudio(String asset) async {
     try {
@@ -43,35 +56,40 @@ class ThemeViewModel extends ChangeNotifier {
   }
 
   Future<void> loadTheme() async {
-    _updateState(_state.setLoading(true));
-    try {
-      final newState = await _themeUseCase.get();
-      _updateState(newState);
-    } catch (e) {
-      _updateState(_state.setError('Erro ao carregar dados do currículo: $e'));
-    }
+    ThemeState? newState;
+    newState = await executeWithNotification(
+      () async => await _themeUseCase.get(),
+      errorMessage: S.current.notificationErrorLoadTheme,
+    );
+    if (newState == null) return;
+    _updateState(newState);
   }
 
   Future<void> toggleTheme() async {
     final currentTheme = _state.themeSettings.themeMode;
     final newTheme = currentTheme == AppThemeMode.light ? AppThemeMode.dark : AppThemeMode.light;
     final newThemeSettings = _state.themeSettings.copyWith(themeMode: newTheme);
-    try {
-      await _themeUseCase.update(newThemeSettings);
-      _updateState(_state.copyWith(themeSettings: newThemeSettings));
-    } catch (e) {
-      _updateState(_state.setError('Erro ao alterar tema: $e'));
-    }
+    await executeWithNotification(
+      () async => await _themeUseCase.update(newThemeSettings),
+      successMessage: S.current.notificationSuccessToggleTheme(newTheme.name),
+      errorMessage: S.current.notificationErrorToggleTheme,
+    );
+    _updateState(_state.copyWith(themeSettings: newThemeSettings));
   }
 
-  Future<void> changeLanguage(Languages language) async {
+  Future<void> toggleLanguage() async {
+    final currentLanguage = _state.themeSettings.language;
+    final language = currentLanguage.opposite;
     final newThemeSettings = _state.themeSettings.copyWith(language: language);
-    try {
-      _updateState(_state.copyWith(themeSettings: newThemeSettings));
-      S.load(currentLocale);
-    } catch (e) {
-      _updateState(_state.setError('Erro ao alterar idioma: $e'));
-    }
+    await executeWithNotification(
+      () async {
+        await _themeUseCase.update(newThemeSettings);
+        S.load(currentLocale);
+      },
+      successMessage: S.current.notificationSuccessToggleLanguage(newThemeSettings.language.code),
+      errorMessage: S.current.notificationErrorToggleLanguage,
+    );
+    _updateState(_state.copyWith(themeSettings: newThemeSettings));
   }
 
   void clearError() {

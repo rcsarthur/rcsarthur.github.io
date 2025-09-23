@@ -1,4 +1,4 @@
-import 'package:curriculum_dart/domain/entities/languages.dart';
+import 'package:curriculum_dart/domain/enums/languages.enum.dart';
 import 'package:curriculum_flutter/generated/assets.dart' show Assets;
 
 extension LanguageExtension on Languages {

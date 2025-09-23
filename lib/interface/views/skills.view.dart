@@ -1,4 +1,6 @@
+import 'package:curriculum_dart/domain/entities/skill.dart';
 import 'package:curriculum_flutter/generated/l10n.dart' show S;
+import 'package:curriculum_flutter/interface/config/extensions/list_chunk.extension.dart';
 import 'package:curriculum_flutter/interface/view_model/provider/view_model_provider.dart';
 import 'package:curriculum_flutter/interface/widget/skill_card.dart';
 import 'package:flutter/material.dart';
@@ -10,8 +12,6 @@ class SkillsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final curriculum = context.curriculumViewModel;
-    final isSmallScreen = ResponsiveBreakpoints.of(context).smallerOrEqualTo(TABLET);
-
     return SingleChildScrollView(
       padding: const EdgeInsets.all(24),
       child: Column(
@@ -66,7 +66,6 @@ class SkillsView extends StatelessWidget {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Technical Skills Section
                   if (curriculum.technicalSkills.isNotEmpty) ...[
                     Text(
                       S.of(context).technicalSkills,
@@ -75,23 +74,12 @@ class SkillsView extends StatelessWidget {
                           ),
                     ),
                     const SizedBox(height: 16),
-                    ResponsiveRowColumn(
-                      layout: isSmallScreen ? ResponsiveRowColumnType.COLUMN : ResponsiveRowColumnType.ROW,
-                      rowSpacing: 16,
-                      columnSpacing: 16,
-                      children: [
-                        ...curriculum.technicalSkills.map((skill) {
-                          return ResponsiveRowColumnItem(
-                            rowFlex: 1,
-                            child: SkillCard(skill: skill),
-                          );
-                        })
-                      ],
+                    _buildSkillsGrid(
+                      context: context,
+                      skills: curriculum.technicalSkills,
                     ),
                     const SizedBox(height: 32),
                   ],
-
-                  // Soft Skills Section
                   if (curriculum.softSkills.isNotEmpty) ...[
                     Text(
                       S.of(context).softSkills,
@@ -100,16 +88,9 @@ class SkillsView extends StatelessWidget {
                           ),
                     ),
                     const SizedBox(height: 16),
-                    ResponsiveRowColumn(
-                      layout: isSmallScreen ? ResponsiveRowColumnType.COLUMN : ResponsiveRowColumnType.ROW,
-                      rowSpacing: 16,
-                      columnSpacing: 16,
-                      children: curriculum.softSkills.map((skill) {
-                        return ResponsiveRowColumnItem(
-                          rowFlex: 1,
-                          child: SkillCard(skill: skill),
-                        );
-                      }).toList(),
+                    _buildSkillsGrid(
+                      context: context,
+                      skills: curriculum.softSkills,
                     ),
                   ],
                 ],
@@ -118,6 +99,46 @@ class SkillsView extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildSkillsGrid({
+    required BuildContext context,
+    required List<Skill> skills,
+  }) {
+    final skillChunks = skills.chunk(3);
+
+    return Column(
+      children: skillChunks.map((chunk) {
+        final int placeholderCount = 3 - chunk.length;
+
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 16.0),
+          child: ResponsiveRowColumn(
+            layout: ResponsiveBreakpoints.of(context).smallerThan(DESKTOP)
+                ? ResponsiveRowColumnType.COLUMN
+                : ResponsiveRowColumnType.ROW,
+            rowCrossAxisAlignment: CrossAxisAlignment.start,
+            rowSpacing: 16,
+            columnSpacing: 16,
+            children: [
+              ...chunk.map((skill) {
+                return ResponsiveRowColumnItem(
+                  rowFlex: 1,
+                  child: SkillCard(skill: skill),
+                );
+              }),
+              if (placeholderCount > 0)
+                ...List.generate(placeholderCount, (_) {
+                  return const ResponsiveRowColumnItem(
+                    rowFlex: 1,
+                    child: SizedBox.shrink(),
+                  );
+                }),
+            ],
+          ),
+        );
+      }).toList(),
     );
   }
 }

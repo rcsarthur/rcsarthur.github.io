@@ -1,10 +1,13 @@
 import 'package:curriculum_dart/domain/entities/contact_info.dart';
-import 'package:curriculum_dart/domain/entities/contact_type.dart';
 import 'package:curriculum_dart/domain/entities/experience.dart';
 import 'package:curriculum_dart/domain/entities/personal_info.dart';
 import 'package:curriculum_dart/domain/entities/project.dart';
 import 'package:curriculum_dart/domain/entities/skill.dart';
+import 'package:curriculum_dart/domain/enums/contact_type.enum.dart';
+import 'package:curriculum_dart/domain/enums/project.enum.dart';
+import 'package:curriculum_dart/domain/enums/skill.enum.dart';
 import 'package:curriculum_dart/repo/curriculum_repo.dart';
+import 'package:curriculum_flutter/generated/assets.dart';
 import 'package:curriculum_flutter/generated/l10n.dart' show S;
 
 class LocalCurriculumRepo implements CurriculumRepo {
@@ -26,7 +29,7 @@ class LocalCurriculumRepo implements CurriculumRepo {
       phone: '+55 (11) 97556-6343',
       location: S.current.heroLocale,
       summary: S.current.heroDescription,
-      profileImageUrl: 'assets/images/profile.jpg',
+      profileImageUrl: Assets.imagesProfile,
     );
   }
 
@@ -41,12 +44,11 @@ class LocalCurriculumRepo implements CurriculumRepo {
       Experience(
         id: '1',
         company: 'Hipcom Informática SS LTDA',
-        position: 'Desenvolvedor Júnior Full-Stack',
+        position: S.current.experienceHipcomPosition,
         startDate: DateTime.parse('2020-09-13'),
         endDate: null,
         isCurrentJob: true,
-        description:
-            'Desenvolvimento de aplicações mobile, desktop e web utilizando Flutter/Dart, integração com APIs REST, desenvolvimento backend com Java/Quarkus, e gerenciamento de banco de dados SQLite e MySQL.',
+        description: S.current.experienceHipcomDescription,
         technologies: const [
           'Flutter',
           'Dart',
@@ -61,69 +63,37 @@ class LocalCurriculumRepo implements CurriculumRepo {
           'CI/CD',
           'Design',
         ],
-        achievements: const {
-          'Integração com sistemas backend utilizando *dio* e *http*': ['Dart', 'Full-Stack'],
-          'Implementação de Clean Architecture': ['Flutter', 'Dart', 'Full-Stack'],
-          'Otimização de performance de aplicações analizando *Flutter DevTools* no Android Studio (é horrível testar um app e o celular esquentar na mão)':
-              ['Flutter', 'Dart', 'Full-Stack'],
-          'Gerenciamento de cache utilizando *shared_preferences*': ['Flutter', 'Dart', 'Full-Stack'],
-          'Gerenciamento de estado utilizando MobX e método nativo do Flutter': [
-            'Flutter',
-            'Dart',
-            'MobX',
-            'Full-Stack'
-          ],
-          'Desenvolvimento de múltiplas aplicações Mobile, Desktop e Web utilizando Flutter': [
-            'Flutter',
-            'Dart',
-            'Full-Stack'
-          ],
-          'Desenvolvimento de microsserviços utilizando Quarkus': ['Java', 'Quarkus', 'Full-Stack'],
-          'Desenvolvimento de API REST utilizando Dart com a lib *shelf*': ['Dart', 'Full-Stack'],
-          'Desenvolvimento de API REST para conectar os apps ao MySQL utilizando Quarkus e *jdbc*': [
-            'Java',
-            'Quarkus',
-            'MySQL',
-            'Full-Stack'
-          ],
-          'Desenvolvimento de interfaces responsivas': ['Flutter', 'Full-Stack'],
-          'Desenvolvimento de testes unitários': ['Java', 'Quarkus', 'Full-Stack'],
-          'Implementação de gráficos e relatórios utilizando *fl_chart*': ['Flutter', 'Full-Stack'],
-          'Implementação de internationalization (i18n) utilizando *flutter_intl* e *flutter_localizations* - Português, Inglês, Espanhol e Chinês':
-              ['Flutter', 'i18n', 'Full-Stack'],
-          'Implementação de cálculos complexos com impostos, tanto no Front-End quanto no Back-End e em Queries MySQL':
-              ['Flutter', 'Dart', 'Java', 'Quarkus', 'MySQL', 'Full-Stack'],
-          'Implementação de CI/CD mobile utilizando *codemagic*': ['CI/CD', 'Full-Stack'],
-          'Implementação de builds para Desktop utilizando msix e Inno Setup Compiler (o projeto ainda não foi publicado para a Microsoft Store)':
-              ['Flutter', 'Dart', 'CI/CD', 'Full-Stack'],
-          'Implementação de Multithreading em Java': ['Java', 'Full-Stack'],
-          'Implementação de modo Offline utilizando *sqflite*': ['Flutter', 'Dart', 'SQLite', 'Full-Stack'],
-          'Implementação de *Isolate* para realizar tarefas custosas em paralelo': ['Flutter', 'Dart', 'Full-Stack'],
-          'Implementação de animações customizadas': ['Flutter', 'Dart', 'Full-Stack'],
-          'Implementação de exportação de logs zipados para Amazon S3 utilizando lib *logger*': [
-            'Flutter',
-            'Dart',
-            'Java',
-            'Quarkus',
-            'Full-Stack'
-          ],
-          'Implementação de filtros para realizar buscas em listas': [
-            'Flutter',
-            'Dart',
-            'Full-Stack',
-            'Java',
-            'Quarkus'
-          ],
-          'Implementação de buscas paginadas: Offset e Cursor': ['Flutter', 'Dart', 'Full-Stack', 'Java', 'Quarkus'],
-          'Implementação de chat com IA (Hippi) utilizando WebSocket': ['Flutter', 'Dart', 'Full-Stack'],
-          'Criação de script .ps1 para gerar um atalho na Área de Trabalho do Windows para aplicativos Desktop (msix não faz isso nativamente)':
-              ['CI/CD', 'Full-Stack'],
-          'Otimização de Queries MySQL: otimizações de queries complexas, reduzindo o tempo de execução, um select específico de produtos estava demorando mais de 1 minuto, eu diminuí o tempo para menos de 20 segundos com uso de lotes em Java':
-              ['Java', 'Quarkus', 'MySQL', 'Full-Stack'],
-          'Ajuda na criação do novo site da empresa utilizando *Framer*': ['Design', 'Full-Stack'],
-          'Ajuda com SEO do novo site da empresa': ['Design', 'Full-Stack'],
+        achievements: {
+          S.current.experienceHipcomAchievement1: ['Dart', 'Full-Stack'],
+          S.current.experienceHipcomAchievement2: ['Flutter', 'Dart', 'Full-Stack'],
+          S.current.experienceHipcomAchievement3: ['Flutter', 'Dart', 'Full-Stack'],
+          S.current.experienceHipcomAchievement4: ['Flutter', 'Dart', 'Full-Stack'],
+          S.current.experienceHipcomAchievement5: ['Flutter', 'Dart', 'MobX', 'Full-Stack'],
+          S.current.experienceHipcomAchievement6: ['Flutter', 'Dart', 'Full-Stack'],
+          S.current.experienceHipcomAchievement7: ['Java', 'Quarkus', 'Full-Stack'],
+          S.current.experienceHipcomAchievement8: ['Dart', 'Full-Stack'],
+          S.current.experienceHipcomAchievement9: ['Java', 'Quarkus', 'MySQL', 'Full-Stack'],
+          S.current.experienceHipcomAchievement10: ['Flutter', 'Full-Stack'],
+          S.current.experienceHipcomAchievement11: ['Java', 'Quarkus', 'Full-Stack'],
+          S.current.experienceHipcomAchievement12: ['Flutter', 'Full-Stack'],
+          S.current.experienceHipcomAchievement13: ['Flutter', 'i18n', 'Full-Stack'],
+          S.current.experienceHipcomAchievement14: ['Flutter', 'Dart', 'Java', 'Quarkus', 'MySQL', 'Full-Stack'],
+          S.current.experienceHipcomAchievement15: ['CI/CD', 'Full-Stack'],
+          S.current.experienceHipcomAchievement16: ['Flutter', 'Dart', 'CI/CD', 'Full-Stack'],
+          S.current.experienceHipcomAchievement17: ['Java', 'Full-Stack'],
+          S.current.experienceHipcomAchievement18: ['Flutter', 'Dart', 'SQLite', 'Full-Stack'],
+          S.current.experienceHipcomAchievement19: ['Flutter', 'Dart', 'Full-Stack'],
+          S.current.experienceHipcomAchievement20: ['Flutter', 'Dart', 'Full-Stack'],
+          S.current.experienceHipcomAchievement21: ['Flutter', 'Dart', 'Java', 'Quarkus', 'Full-Stack'],
+          S.current.experienceHipcomAchievement22: ['Flutter', 'Dart', 'Full-Stack', 'Java', 'Quarkus'],
+          S.current.experienceHipcomAchievement23: ['Flutter', 'Dart', 'Full-Stack', 'Java', 'Quarkus'],
+          S.current.experienceHipcomAchievement24: ['Flutter', 'Dart', 'Full-Stack'],
+          S.current.experienceHipcomAchievement25: ['CI/CD', 'Full-Stack'],
+          S.current.experienceHipcomAchievement26: ['Java', 'Quarkus', 'MySQL', 'Full-Stack'],
+          S.current.experienceHipcomAchievement27: ['Design', 'Full-Stack'],
+          S.current.experienceHipcomAchievement28: ['Design', 'Full-Stack'],
         },
-        companyLogo: 'assets/images/hipcom_logo.svg',
+        companyLogo: Assets.iconsHipcomLogo,
       ),
     ];
   }
@@ -146,41 +116,76 @@ class LocalCurriculumRepo implements CurriculumRepo {
   @override
   Future<List<Project>> getProjects() async {
     return [
-      const Project(
+      Project(
         id: '1',
-        name: 'App de Gestão Empresarial',
-        description:
-            'Aplicativo mobile para gestão empresarial com funcionalidades de controle de estoque, vendas e relatórios.',
-        technologies: ['Flutter', 'Dart', 'SQLite', 'Provider'],
+        name: 'Base by Hipcom',
+        description: S.current.projectBaseDescription,
+        technologies: const ['Flutter', 'Dart', 'SQLite', 'MobX', 'i18n', 'Cache', 'WebSocket'],
         features: [
-          'Controle de estoque em tempo real',
-          'Sistema de vendas integrado',
-          'Relatórios detalhados',
-          'Interface responsiva',
-          'Sincronização offline'
+          S.current.projectBaseFeature1,
+          S.current.projectBaseFeature2,
+          S.current.projectBaseFeature3,
+          S.current.projectBaseFeature4,
+          S.current.projectBaseFeature5,
+          S.current.projectBaseFeature6,
+          S.current.projectBaseFeature7,
+          S.current.projectBaseFeature8,
+          S.current.projectBaseFeature9,
+          S.current.projectBaseFeature10,
+          S.current.projectBaseFeature11,
+          S.current.projectBaseFeature12,
+          S.current.projectBaseFeature13,
+          S.current.projectBaseFeature14,
+          S.current.projectBaseFeature15,
+          S.current.projectBaseFeature16,
         ],
-        iconUrl: 'assets/icons/business_app.png',
-        imageUrl: 'assets/images/business_app_screenshot.png',
-        startDate: '2023-03-01',
-        endDate: '2023-08-01',
+        iconUrl: Assets.imagesLogoBase,
+        liveUrl: 'https://hipcomerp.com.br/produtos/aplicativos/base',
         status: ProjectStatus.completed,
       ),
-      const Project(
+      Project(
         id: '2',
-        name: 'Sistema de Monitoramento',
-        description: 'Sistema web para monitoramento de equipamentos industriais com dashboard em tempo real.',
-        technologies: ['Flutter Web', 'Dart', 'WebSocket', 'Charts'],
+        name: 'Compras by Hipcom',
+        description: S.current.projectComprasDescription,
+        technologies: const ['Flutter', 'Dart', 'SQLite', 'MobX', 'Cache'],
         features: [
-          'Dashboard em tempo real',
-          'Alertas automáticos',
-          'Histórico de dados',
-          'Relatórios customizáveis',
-          'Interface responsiva'
+          S.current.projectComprasFeature1,
+          S.current.projectComprasFeature2,
+          S.current.projectComprasFeature3,
+          S.current.projectComprasFeature4,
+          S.current.projectComprasFeature5,
+          S.current.projectComprasFeature6,
+          S.current.projectComprasFeature7,
+          S.current.projectComprasFeature8,
+          S.current.projectComprasFeature9,
+          S.current.projectComprasFeature10,
+          S.current.projectComprasFeature11,
         ],
-        iconUrl: 'assets/icons/monitoring_system.png',
-        imageUrl: 'assets/images/monitoring_system_screenshot.png',
-        startDate: '2023-09-01',
-        endDate: null,
+        iconUrl: Assets.imagesLogoCompras,
+        liveUrl: 'https://hipcomerp.com.br/produtos/aplicativos/compras',
+        status: ProjectStatus.completed,
+      ),
+      Project(
+        id: '3',
+        name: 'Hipcom Store',
+        description: S.current.projectStoreDescription,
+        technologies: const ['Flutter', 'Dart'],
+        features: [
+          S.current.projectStoreFeature1,
+          S.current.projectStoreFeature2,
+          S.current.projectStoreFeature3,
+        ],
+        status: ProjectStatus.inProgress,
+      ),
+      Project(
+        id: '4',
+        name: 'Hipcom Store API',
+        description: S.current.projectStoreApiDescription,
+        technologies: const ['Dart', 'REST API'],
+        features: [
+          S.current.projectStoreApiFeature1,
+          S.current.projectStoreApiFeature2,
+        ],
         status: ProjectStatus.inProgress,
       ),
     ];
@@ -205,60 +210,103 @@ class LocalCurriculumRepo implements CurriculumRepo {
   Future<List<Skill>> getSkills() async {
     return [
       // Technical Skills
-      const Skill(
+      Skill(
         id: '1',
         name: 'Flutter/Dart',
         type: SkillType.technical,
         level: SkillLevel.advanced,
-        description: 'Desenvolvimento de aplicações mobile e web com Flutter',
+        description: S.current.skillFlutterDescription,
         examples: [
-          'Criação de apps complexos com arquitetura MVVM',
-          'Implementação de animações customizadas',
-          'Integração com APIs REST'
+          S.current.skillFlutterExample1,
+          S.current.skillFlutterExample2,
+          S.current.skillFlutterExample3,
+          S.current.skillFlutterExample4,
+          S.current.skillFlutterExample5,
+          S.current.skillFlutterExample6,
+          S.current.skillFlutterExample7,
+          S.current.skillFlutterExample8,
+          S.current.skillFlutterExample9,
         ],
         iconUrl: 'assets/icons/flutter.png',
       ),
-      const Skill(
+      Skill(
         id: '2',
         name: 'Java/Quarkus',
         type: SkillType.technical,
         level: SkillLevel.intermediate,
-        description: 'Desenvolvimento backend com Java e framework Quarkus',
-        examples: ['Criação de APIs REST', 'Integração com banco de dados', 'Implementação de microserviços'],
+        description: S.current.skillJavaDescription,
+        examples: [
+          S.current.skillJavaExample1,
+          S.current.skillJavaExample2,
+          S.current.skillJavaExample3,
+          S.current.skillJavaExample4,
+          S.current.skillJavaExample5,
+          S.current.skillJavaExample6,
+        ],
         iconUrl: 'assets/icons/java.png',
       ),
-      const Skill(
+      Skill(
         id: '3',
         name: 'SQLite/MySQL',
         type: SkillType.technical,
         level: SkillLevel.intermediate,
-        description: 'Gerenciamento e otimização de banco de dados',
-        examples: ['Design de esquemas de banco', 'Otimização de queries', 'Migração de dados'],
+        description: S.current.skillDatabaseDescription,
+        examples: [
+          S.current.skillDatabaseExample1,
+          S.current.skillDatabaseExample2,
+          S.current.skillDatabaseExample3,
+        ],
+        iconUrl: 'assets/icons/database.png',
+      ),
+      Skill(
+        id: '4',
+        name: 'CI/CD',
+        type: SkillType.technical,
+        level: SkillLevel.intermediate,
+        description: S.current.skillCicdDescription,
+        examples: [
+          S.current.skillCicdExample1,
+        ],
         iconUrl: 'assets/icons/database.png',
       ),
       // Soft Skills
-      const Skill(
-        id: '4',
-        name: 'Trabalho em Equipe',
+      Skill(
+        id: '5',
+        name: S.current.skillTeamworkName,
         type: SkillType.soft,
         level: SkillLevel.advanced,
-        description: 'Colaboração efetiva em projetos de equipe',
+        description: S.current.skillTeamworkDescription,
         examples: [
-          'Participação ativa em reuniões de planejamento',
-          'Mentoria de desenvolvedores júnior',
-          'Resolução colaborativa de problemas'
+          S.current.skillTeamworkExample1,
+          S.current.skillTeamworkExample2,
+          S.current.skillTeamworkExample3,
+          S.current.skillTeamworkExample4,
+          S.current.skillTeamworkExample5,
         ],
       ),
-      const Skill(
-        id: '5',
-        name: 'Resolução de Problemas',
+      Skill(
+        id: '6',
+        name: S.current.skillProblemSolvingName,
         type: SkillType.soft,
         level: SkillLevel.advanced,
-        description: 'Análise e solução de problemas complexos',
+        description: S.current.skillProblemSolvingDescription,
         examples: [
-          'Debug de aplicações em produção',
-          'Otimização de performance',
-          'Implementação de soluções criativas'
+          S.current.skillProblemSolvingExample1,
+          S.current.skillProblemSolvingExample2,
+          S.current.skillProblemSolvingExample3,
+          S.current.skillProblemSolvingExample4,
+        ],
+      ),
+      Skill(
+        id: '7',
+        name: S.current.skillAnalyticalAbilityName,
+        type: SkillType.soft,
+        level: SkillLevel.advanced,
+        description: S.current.skillAnalyticalAbilityDescription,
+        examples: [
+          S.current.skillAnalyticalAbilityExample1,
+          S.current.skillAnalyticalAbilityExample2,
+          S.current.skillAnalyticalAbilityExample3,
         ],
       ),
     ];
@@ -310,8 +358,8 @@ class LocalCurriculumRepo implements CurriculumRepo {
       const ContactInfo(
         type: ContactType.github,
         label: 'GitHub',
-        value: 'github.com/RCSArthur',
-        url: 'https://github.com/RCSArthur',
+        value: 'github.com/rcsarthur',
+        url: 'https://github.com/rcsarthur',
         iconName: 'github',
       ),
     ];

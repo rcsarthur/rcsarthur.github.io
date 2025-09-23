@@ -66,6 +66,7 @@ class ExperiencesView extends StatelessWidget {
                     }
 
                     return ResponsiveRowColumn(
+                      rowCrossAxisAlignment: CrossAxisAlignment.start,
                       layout: ResponsiveBreakpoints.of(context).smallerThan(DESKTOP)
                           ? ResponsiveRowColumnType.COLUMN
                           : ResponsiveRowColumnType.ROW,

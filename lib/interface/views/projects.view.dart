@@ -1,4 +1,5 @@
 import 'package:curriculum_flutter/generated/l10n.dart' show S;
+import 'package:curriculum_flutter/interface/config/extensions/list_chunk.extension.dart';
 import 'package:curriculum_flutter/interface/view_model/provider/view_model_provider.dart';
 import 'package:curriculum_flutter/interface/widget/project_card.dart';
 import 'package:flutter/material.dart';
@@ -70,16 +71,37 @@ class _ProjectsViewState extends State<ProjectsView> {
                       );
                     }
 
-                    return ResponsiveRowColumn(
-                      layout: ResponsiveBreakpoints.of(context).smallerThan(DESKTOP)
-                          ? ResponsiveRowColumnType.COLUMN
-                          : ResponsiveRowColumnType.ROW,
-                      rowSpacing: 24,
-                      columnSpacing: 24,
-                      children: curriculum.projects.map((project) {
-                        return ResponsiveRowColumnItem(
-                          rowFlex: 1,
-                          child: ProjectCard(project: project),
+                    final projectChunks = curriculum.projects.chunk(3);
+
+                    return Column(
+                      children: projectChunks.map((chunk) {
+                        final int placeholderCount = 3 - chunk.length;
+
+                        return Padding(
+                          padding: const EdgeInsets.only(bottom: 24.0),
+                          child: ResponsiveRowColumn(
+                            rowCrossAxisAlignment: CrossAxisAlignment.start,
+                            layout: ResponsiveBreakpoints.of(context).smallerThan(DESKTOP)
+                                ? ResponsiveRowColumnType.COLUMN
+                                : ResponsiveRowColumnType.ROW,
+                            rowSpacing: 24,
+                            columnSpacing: 24,
+                            children: [
+                              ...chunk.map((project) {
+                                return ResponsiveRowColumnItem(
+                                  rowFlex: 1,
+                                  child: ProjectCard(project: project),
+                                );
+                              }),
+                              if (placeholderCount > 0)
+                                ...List.generate(placeholderCount, (_) {
+                                  return const ResponsiveRowColumnItem(
+                                    rowFlex: 1,
+                                    child: SizedBox.shrink(),
+                                  );
+                                }),
+                            ],
+                          ),
                         );
                       }).toList(),
                     );

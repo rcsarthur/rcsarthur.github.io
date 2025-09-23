@@ -1,18 +1,16 @@
 import 'dart:ui';
 
-import 'package:curriculum_dart/domain/entities/theme_settings.dart';
+import 'package:curriculum_dart/domain/enums/app_theme.enum.dart';
 import 'package:curriculum_flutter/generated/l10n.dart' show S;
+import 'package:curriculum_flutter/infrastructure/service/flutter_notification.service.dart';
 import 'package:curriculum_flutter/interface/config/module/app_router.dart';
 import 'package:curriculum_flutter/interface/view_model/provider/view_model_provider.dart';
 import 'package:curriculum_flutter/theme/app_theme.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 void main() {
-  if (kIsWeb) setUrlStrategy(const HashUrlStrategy());
   runApp(CurriculumApp());
 }
 
@@ -39,7 +37,7 @@ class CurriculumApp extends StatelessWidget {
           return MaterialApp.router(
             title: 'Arthur R C Santos - Curriculum Vitae',
             debugShowCheckedModeBanner: false,
-            // Theme configuration
+            scaffoldMessengerKey: FlutterNotificationService.messengerKey,
             theme: AppTheme.lightTheme(context),
             darkTheme: AppTheme.darkTheme(context),
             themeMode: _getThemeMode(themeViewModel.themeSettings.themeMode),
@@ -54,7 +52,6 @@ class CurriculumApp extends StatelessWidget {
               scrollbars: false,
               physics: const BouncingScrollPhysics(),
             ),
-            // Localization configuration
             localizationsDelegates: const [
               S.delegate,
               GlobalMaterialLocalizations.delegate,
@@ -72,10 +69,7 @@ class CurriculumApp extends StatelessWidget {
               }
               return supportedLocales.first;
             },
-            // Router configuration
             routerConfig: _appRouter.config(),
-
-            // Responsive framework configuration
             builder: (context, child) {
               return ResponsiveBreakpoints.builder(
                 child: child!,
@@ -99,8 +93,6 @@ class CurriculumApp extends StatelessWidget {
         return ThemeMode.light;
       case AppThemeMode.dark:
         return ThemeMode.dark;
-      case AppThemeMode.system:
-        return ThemeMode.system;
     }
   }
 }

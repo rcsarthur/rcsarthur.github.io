@@ -17,6 +17,7 @@ class HeroSection extends StatelessWidget {
           return const SizedBox.shrink();
         }
         return ResponsiveRowColumn(
+          rowCrossAxisAlignment: CrossAxisAlignment.start,
           layout: isSmallScreen ? ResponsiveRowColumnType.COLUMN : ResponsiveRowColumnType.ROW,
           rowSpacing: 32,
           columnSpacing: 24,
@@ -52,11 +53,8 @@ class HeroSection extends StatelessWidget {
                             ),
                           ],
                         ),
-                        child: const Icon(
-                          Icons.person,
-                          size: 120,
-                          color: Colors.white,
-                        ),
+                        clipBehavior: Clip.antiAlias,
+                        child: Image.asset(personalInfo.profileImageUrl, width: 120),
                       ),
                     ),
                   );
@@ -139,7 +137,7 @@ class HeroSection extends StatelessWidget {
                           child: Row(
                             children: [
                               Icon(
-                                Icons.location_on,
+                                Icons.location_on_outlined,
                                 size: 20,
                                 color: Theme.of(context).colorScheme.primary,
                               ),

@@ -1,5 +1,5 @@
-import 'package:curriculum_dart/domain/entities/languages.dart';
 import 'package:curriculum_flutter/generated/l10n.dart' show S;
+import 'package:curriculum_flutter/interface/config/extensions/app_theme.extension.dart';
 import 'package:curriculum_flutter/interface/config/extensions/languages.extension.dart';
 import 'package:curriculum_flutter/interface/config/route/routes.dart';
 import 'package:curriculum_flutter/interface/view_model/curriculum.view_model.dart';
@@ -25,7 +25,7 @@ class AppScaffold extends StatelessWidget {
 
     return Scaffold(
       appBar: _buildAppBar(context, curriculum, theme, isSmallScreen),
-      drawer: isSmallScreen ? _buildDrawer(context, curriculum, theme) : null,
+      drawer: isSmallScreen ? SafeArea(child: _buildDrawer(context, curriculum, theme)) : null,
       body: body,
     );
   }
@@ -43,22 +43,21 @@ class AppScaffold extends StatelessWidget {
         child: Text(S.of(context).appTitle),
       ),
       automaticallyImplyLeading: isSmallScreen,
-      titleSpacing: 8,
+      titleSpacing: isSmallScreen ? 4 : null,
       actions: [
         if (!isSmallScreen)
-          Expanded(
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              physics: const NeverScrollableScrollPhysics(),
-              child: Row(
-                children: [
-                  _buildNavButton(context, S.of(context).home, Routes.home, Icons.home_outlined),
-                  _buildNavButton(context, S.of(context).experiences, Routes.experiences, Icons.work_outline_rounded),
-                  _buildNavButton(context, S.of(context).projects, Routes.projects, Icons.app_shortcut_outlined),
-                  _buildNavButton(context, S.of(context).skills, Routes.skills, Icons.star_border_rounded),
-                  const SizedBox(width: 16),
-                ],
-              ),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            physics: const NeverScrollableScrollPhysics(),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                _buildNavButton(context, S.of(context).home, Routes.home, Icons.home_outlined),
+                _buildNavButton(context, S.of(context).experiences, Routes.experiences, Icons.work_outline_rounded),
+                _buildNavButton(context, S.of(context).projects, Routes.projects, Icons.app_shortcut_outlined),
+                _buildNavButton(context, S.of(context).skills, Routes.skills, Icons.star_border_rounded),
+                const SizedBox(width: 16),
+              ],
             ),
           ),
 
@@ -67,11 +66,10 @@ class AppScaffold extends StatelessWidget {
           animation: themeViewModel,
           builder: (context, child) {
             return IconButton(
-              onPressed: () {
-                final newLanguage =
-                    Languages.values.firstWhere((lang) => lang != themeViewModel.themeSettings.language);
-                themeViewModel.changeLanguage(newLanguage);
-                curriculumViewModel.loadCurriculumData();
+              onPressed: () async {
+                await themeViewModel.toggleLanguage();
+                await Future.delayed(
+                    const Duration(milliseconds: 100), () async => await curriculumViewModel.loadCurriculumData());
               },
               icon: SvgPicture.asset(
                 themeViewModel.themeSettings.language.oppositeFlag,
@@ -100,7 +98,7 @@ class AppScaffold extends StatelessWidget {
         // PDF download
         IconButton(
           onPressed: () => curriculumViewModel.generatePdf(themeViewModel.themeSettings.language),
-          icon: const Icon(Icons.download),
+          icon: const Icon(Icons.download_outlined),
           tooltip: S.of(context).downloadPdf,
         ),
 
@@ -113,6 +111,9 @@ class AppScaffold extends StatelessWidget {
     final isActive = Routes.current == route.url;
 
     return TextButton.icon(
+      style: TextButton.styleFrom(
+        backgroundColor: context.appColors.scaffoldBackground,
+      ),
       onPressed: () => Routes.navigate(context, route),
       icon: Icon(
         icon,
@@ -135,38 +136,10 @@ class AppScaffold extends StatelessWidget {
 
   Widget _buildDrawer(BuildContext context, CurriculumViewModel curriculumViewModel, ThemeViewModel themeViewModel) {
     return Drawer(
+      backgroundColor: context.appColors.scaffoldBackground,
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          DrawerHeader(
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.primary,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  S.of(context).appTitle,
-                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                ),
-                const SizedBox(height: 8),
-                AnimatedBuilder(
-                  animation: curriculumViewModel,
-                  builder: (context, child) {
-                    return Text(
-                      curriculumViewModel.personalInfo?.name ?? '',
-                      style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                            color: Colors.white70,
-                          ),
-                    );
-                  },
-                ),
-              ],
-            ),
-          ),
           _buildDrawerItem(context, S.of(context).home, Routes.home, Icons.home_outlined),
           _buildDrawerItem(context, S.of(context).experiences, Routes.experiences, Icons.work_outline_rounded),
           _buildDrawerItem(context, S.of(context).projects, Routes.projects, Icons.app_shortcut_outlined),
