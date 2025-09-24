@@ -48218,7 +48218,7 @@ var $async$BF=B.C(function(e5,e6){if(e5===1)return B.D(e6,r)
 while(true)switch(s){case 0:$.a8.toString
 p=t.f
 o=B.M("Desenvolvedor J\xfanior Full-Stack",null,"experienceHipcomPosition",B.b([],p),null)
-n=B.aUw("2020-09-13")
+n=B.aUw("2020-10-13")
 $.a8.toString
 m=B.M(u.W,null,"experienceHipcomDescription",B.b([],p),null)
 $.a8.toString
