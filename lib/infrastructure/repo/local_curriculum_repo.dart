@@ -45,7 +45,7 @@ class LocalCurriculumRepo implements CurriculumRepo {
         id: '1',
         company: 'Hipcom Informática SS LTDA',
         position: S.current.experienceHipcomPosition,
-        startDate: DateTime.parse('2020-09-13'),
+        startDate: DateTime.parse('2020-10-13'),
         endDate: null,
         isCurrentJob: true,
         description: S.current.experienceHipcomDescription,
