@@ -46,8 +46,8 @@ class LocalCurriculumRepo implements CurriculumRepo {
         company: 'Hipcom Informática SS LTDA',
         position: S.current.experienceHipcomPosition,
         startDate: DateTime.parse('2020-10-13'),
-        endDate: null,
-        isCurrentJob: true,
+        endDate: DateTime.parse('2025-10-20'),
+        isCurrentJob: false,
         description: S.current.experienceHipcomDescription,
         technologies: const [
           'Flutter',
