@@ -190,7 +190,7 @@ class ProjectDetailView extends StatelessWidget {
           if (project.githubUrl != null)
             ElevatedButton.icon(
               onPressed: () {
-                // TODO: Implementar abertura do GitHub
+                curriculumViewModel.openUrl(project.githubUrl!);
               },
               icon: const Icon(Icons.code_rounded),
               label: Text(
