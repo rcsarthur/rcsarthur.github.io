@@ -74,44 +74,44 @@ class SkillCard extends StatelessWidget {
             const SizedBox(height: 16),
 
             // Level indicator
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Row(
-                  children: [
-                    Text(
-                      S.of(context).skillLevel,
-                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                            fontWeight: FontWeight.w600,
-                          ),
-                    ),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      child: LinearProgressIndicator(
-                        value: _getLevelProgress(skill.level),
-                        backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
-                        valueColor: AlwaysStoppedAnimation<Color>(_getLevelColor(skill.level)),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 8),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                  decoration: BoxDecoration(
-                    color: _getLevelColor(skill.level).withValues(alpha: 0.2),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: Text(
-                    _getLevelText(context, skill.level),
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                          color: _getLevelColor(skill.level),
-                          fontWeight: FontWeight.w600,
-                        ),
-                  ),
-                ),
-              ],
-            ),
+            // Column(
+            //   crossAxisAlignment: CrossAxisAlignment.end,
+            //   children: [
+            //     Row(
+            //       children: [
+            //         Text(
+            //           S.of(context).skillLevel,
+            //           style: Theme.of(context).textTheme.bodySmall?.copyWith(
+            //                 fontWeight: FontWeight.w600,
+            //               ),
+            //         ),
+            //         const SizedBox(width: 8),
+            //         Expanded(
+            //           child: LinearProgressIndicator(
+            //             value: _getLevelProgress(skill.level),
+            //             backgroundColor: Theme.of(context).colorScheme.surfaceContainerHighest,
+            //             valueColor: AlwaysStoppedAnimation<Color>(_getLevelColor(skill.level)),
+            //           ),
+            //         ),
+            //       ],
+            //     ),
+            //     const SizedBox(height: 8),
+            //     Container(
+            //       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+            //       decoration: BoxDecoration(
+            //         color: _getLevelColor(skill.level).withValues(alpha: 0.2),
+            //         borderRadius: BorderRadius.circular(12),
+            //       ),
+            //       child: Text(
+            //         _getLevelText(context, skill.level),
+            //         style: Theme.of(context).textTheme.bodySmall?.copyWith(
+            //               color: _getLevelColor(skill.level),
+            //               fontWeight: FontWeight.w600,
+            //             ),
+            //       ),
+            //     ),
+            //   ],
+            // ),
 
             const SizedBox(height: 16),
 
